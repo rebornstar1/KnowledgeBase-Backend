@@ -19,9 +19,27 @@ const bedrockClient = new BedrockAgentRuntimeClient({
 
 // Middleware
 app.use(helmet());
-app.use(cors({
-  origin: '*'
-}));
+app.use((req, res, next) => {
+  // Get the origin of the request
+  const origin = req.headers.origin;
+  
+  // Only set for cross-origin requests
+  if (origin) {
+    // Set CORS headers
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Max-Age', '86400');
+  }
+  
+  // Handle preflight OPTIONS requests
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
+  }
+  
+  next();
+});
 app.use(express.json());
 
 // Chat endpoint
