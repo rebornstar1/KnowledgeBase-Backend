@@ -1,0 +1,20 @@
+{
+  "name": "bedrock-chatbot-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-bedrock-agent-runtime": "^3.809.0",
+    "bedrock-chatbot-api": "file:",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0"
+  }
+}
